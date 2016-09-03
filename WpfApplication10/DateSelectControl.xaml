@@ -1,0 +1,104 @@
+﻿<UserControl x:Class="WpfApplication10.DateSelectControl"
+xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+mc:Ignorable="d" 
+d:DesignHeight="210" d:DesignWidth="200" Loaded="MonthUserControl_OnLoaded">
+    <UserControl.Resources>
+        <Style x:Key="LbMontyStyle" TargetType="Label">
+            <Setter Property="Foreground" Value="{Binding MonthForeGround}"></Setter>
+            <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+            <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+            <Setter Property="FontSize" Value="16"></Setter>
+        </Style>
+        <Style x:Key="ContentControlStyle" TargetType="RadioButton">
+            <Setter Property="Height" Value="39"></Setter>
+            <Setter Property="Margin" Value="0.2,0"></Setter>
+            <Setter Property="Width" Value="55"></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="RadioButton">
+                        <Grid x:Name="T_Grid">
+                            <Label Content="{TemplateBinding Content}" Style="{StaticResource LbMontyStyle}"></Label>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="T_Grid" Property="Background" Value="#FF48CDF9"></Setter>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="T_Grid" Property="Background" Value="DeepSkyBlue"></Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="39"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <!--年份-->
+        <Button x:Name="BtnPrevious" Click="BtnPrevious_OnClick" Grid.Row="0" Grid.Column="0">
+            <Button.Template>
+                <ControlTemplate>
+                    <Grid x:Name="Main_Grid" VerticalAlignment="Center" HorizontalAlignment="Center" Height="26">
+                        <Path x:Name="Path1" Stroke="#FF363FF3" StrokeThickness="5" Data="M0,13 20,0"></Path>
+                        <Path x:Name="Path2" Stroke="#FF363FF3" StrokeThickness="5" Data="M0,11 20,24"></Path>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Trigger.Setters>
+                                <Setter TargetName="Path1" Property="Stroke" Value="#FF0A15F9"></Setter>
+                                <Setter TargetName="Path1" Property="Stroke" Value="#FF0A15F9"></Setter>
+                            </Trigger.Setters>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+        <Button x:Name="BtnNext" Click="BtnNext_OnClick" Grid.Row="0" Grid.Column="2">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Grid x:Name="Main_Grid" VerticalAlignment="Center" HorizontalAlignment="Center" Height="26">
+                        <Path x:Name="Path1" Stroke="#FF363FF3" StrokeThickness="5" Data="M20,13 0,0"></Path>
+                        <Path x:Name="Path2" Stroke="#FF363FF3" StrokeThickness="5" Data="M20,11 0,24"></Path>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Trigger.Setters>
+                                <Setter TargetName="Path1" Property="Stroke" Value="#FF0A15F9"></Setter>
+                                <Setter TargetName="Path1" Property="Stroke" Value="#FF0A15F9"></Setter>
+                            </Trigger.Setters>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+               
+            </Button.Template>
+        </Button>
+        <TextBlock x:Name="TblYear" Style="{x:Null}" Grid.Row="0" Grid.Column="1" Text="2016" FontSize="16" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+        <!--月份-->
+        <RadioButton x:Name="BtnMonth1" Grid.Row="1" Grid.Column="0" Content="1月" Click="ButtonMonth_OnClick" Style="{StaticResource ContentControlStyle}"></RadioButton>
+        <RadioButton x:Name="BtnMonth2" Grid.Row="1" Grid.Column="1" Content="2月" Click="ButtonMonth_OnClick" Style="{StaticResource ContentControlStyle}"></RadioButton>
+        <RadioButton x:Name="BtnMonth3" Grid.Row="1" Grid.Column="2" Content="3月" Click="ButtonMonth_OnClick" Style="{StaticResource ContentControlStyle}"></RadioButton>
+        <RadioButton x:Name="BtnMonth4" Grid.Row="2" Grid.Column="0" Content="4月" Click="ButtonMonth_OnClick" Style="{StaticResource ContentControlStyle}"></RadioButton>
+        <RadioButton x:Name="BtnMonth5" Grid.Row="2" Grid.Column="1" Content="5月" Click="ButtonMonth_OnClick" Style="{StaticResource ContentControlStyle}"></RadioButton>
+        <RadioButton x:Name="BtnMonth6" Grid.Row="2" Grid.Column="2" Content="6月" Click="ButtonMonth_OnClick" Style="{StaticResource ContentControlStyle}"></RadioButton>
+        <RadioButton x:Name="BtnMonth7" Grid.Row="3" Grid.Column="0" Content="7月" Click="ButtonMonth_OnClick" Style="{StaticResource ContentControlStyle}"></RadioButton>
+        <RadioButton x:Name="BtnMonth8" Grid.Row="3" Grid.Column="1" Content="8月" Click="ButtonMonth_OnClick" Style="{StaticResource ContentControlStyle}"></RadioButton>
+        <RadioButton x:Name="BtnMonth9" Grid.Row="3" Grid.Column="2" Content="9月" Click="ButtonMonth_OnClick" Style="{StaticResource ContentControlStyle}"></RadioButton>
+        <RadioButton x:Name="BtnMonth10" Grid.Row="4" Grid.Column="0" Content="10月" Click="ButtonMonth_OnClick" Style="{StaticResource ContentControlStyle}"></RadioButton>
+        <RadioButton x:Name="BtnMonth11" Grid.Row="4" Grid.Column="1" Content="11月" Click="ButtonMonth_OnClick" Style="{StaticResource ContentControlStyle}"></RadioButton>
+        <RadioButton x:Name="BtnMonth12" Grid.Row="4" Grid.Column="2" Content="12月" Click="ButtonMonth_OnClick" Style="{StaticResource ContentControlStyle}"></RadioButton>
+    </Grid>
+</UserControl>

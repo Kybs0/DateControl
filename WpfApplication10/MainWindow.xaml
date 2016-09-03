@@ -1,0 +1,44 @@
+﻿<Window x:Class="WpfApplication10.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:wpfApplication10="clr-namespace:WpfApplication10"
+        Title="MainWindow" Height="150" Width="300">
+    <Grid>
+        <Button x:Name="BtnDateTime" HorizontalAlignment="Center" Margin="20,0" Content="时间选择" Foreground="White" Background="#FF23C5FB" Width="80" Height="32" Click="BtnDateTime_OnClick"></Button>
+        <Popup x:Name="DateTimePopup" Placement="Top" VerticalOffset="0" PopupAnimation="Fade" Width="200" Height="280" PlacementTarget="{Binding ElementName=BtnDateTime}" StaysOpen="True" IsOpen="False" AllowsTransparency="True">
+            <Grid Background="CornflowerBlue">
+                <Grid Margin="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="50"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition Width="40"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="选择月份" Foreground="DeepSkyBlue" FontSize="18" VerticalAlignment="Center" Margin="15,0"></TextBlock>
+                        <Button x:Name="BtnDateTimePopupClose" ToolTip="关闭" Grid.Column="1" HorizontalAlignment="Center" Background="Transparent" VerticalAlignment="Center" Click="BtnDateTimePopupClose_OnClick">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Grid x:Name="Main_Grid">
+                                        <Path Stroke="White" StrokeThickness="3" Data="M0,0 L15,15"></Path>
+                                        <Path Stroke="White" StrokeThickness="3" Data="M15,0 L0,15"></Path>
+                                    </Grid>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <!--<Setter TargetName="Main_Grid" Property="Background" Value="#FFE2E2E2"></Setter>-->
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </Grid>
+                    <wpfApplication10:DateSelectControl Grid.Row="1" HorizontalAlignment="Center"></wpfApplication10:DateSelectControl>
+                    <Button Grid.Row="2" HorizontalAlignment="Right" Margin="0,0,10,15" Content="确定" Foreground="White" Background="#FF23C5FB" Width="80" Height="32"></Button>
+                </Grid>
+            </Grid>
+        </Popup>
+    </Grid>
+</Window>
